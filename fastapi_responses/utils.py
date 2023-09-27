@@ -1,3 +1,4 @@
+import http
 import importlib
 import inspect
 import tokenize
@@ -6,20 +7,27 @@ from io import BytesIO
 from tokenize import TokenInfo
 from typing import Callable, Generator, List, Tuple
 
-from fastapi.routing import APIRoute
+from fastapi import status
+from fastapi.routing import BaseRoute
 from starlette.exceptions import HTTPException
 
+HTTP_STATUS_CODE_TO_MSG = {
+    code: http.HTTPStatus(code)
+    for code in http.HTTPStatus
+}
 
-def build_statement(exc: TokenInfo, tokens: Generator[TokenInfo, None, None]) -> str:
+
+def build_statement(exc: TokenInfo, tokens: Generator[TokenInfo, None, None]):
     statement = exc.string
     while True:
         token = next(tokens)
+        # print(token.type == tokenize.NEWLINE, token.string.replace("\n", ""))
         statement += token.string.replace("\n", "")
         if token.type == tokenize.NEWLINE:
             return statement
 
 
-def is_function_or_coroutine(obj):
+def is_function_or_coroutine(obj) -> bool:
     return isfunction(obj) or iscoroutinefunction(obj)
 
 
@@ -35,11 +43,16 @@ def exceptions_functions(
                 obj = getattr(module, token.string)
                 if inspect.isclass(obj):
                     statement = build_statement(token, tokens)
+                    # statement = ','.join([
+                    #     part if not part.startswith('headers') else ')'
+                    #     for part in statement.split(',')
+                    # ])
                     http_exc = eval(statement)
                     if isinstance(http_exc, HTTPException):
                         exceptions.append(http_exc)
                 if is_function_or_coroutine(obj) and obj is not endpoint:
-                    functions.append(obj)
+                    if not str(obj).startswith('<function processing_segment'):
+                        functions.append(obj)
             except Exception:
                 ...
     except StopIteration:
@@ -47,7 +60,7 @@ def exceptions_functions(
     return exceptions, functions
 
 
-def extract_exceptions(route: APIRoute) -> List[HTTPException]:
+def extract_exceptions(route: BaseRoute) -> List[HTTPException]:
     exceptions = []
     functions = []
     functions.append(getattr(route, "endpoint"))
@@ -61,12 +74,23 @@ def extract_exceptions(route: APIRoute) -> List[HTTPException]:
     return exceptions
 
 
-def write_response(api_schema: dict, route: APIRoute, exc: HTTPException) -> None:
+def write_response(api_schema: dict, route: BaseRoute, exc: HTTPException):
     path = getattr(route, "path")
     methods = [method.lower() for method in getattr(route, "methods")]
     for method in methods:
         status_code = str(exc.status_code)
+        error = HTTP_STATUS_CODE_TO_MSG.get(
+            exc.status_code,
+            http.HTTPStatus.BAD_REQUEST.value
+        )
         if status_code not in api_schema["paths"][path][method]["responses"]:
             api_schema["paths"][path][method]["responses"][status_code] = {
-                "description": exc.detail
+                "description": f"Error: {error.phrase} ({error.description})",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                    }
+                }
             }

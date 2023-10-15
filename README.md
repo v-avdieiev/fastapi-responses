@@ -25,6 +25,10 @@
 pip install fastapi-responses
 ```
 
+## Connection with a developer
+
+[![Telegram](https://img.shields.io/badge/Telegram-Group-blue.svg?logo=telegram)](https://telegram.me/developer_support_bot)
+
 ## Usage
 
 The simplest use case happens when we have a single exception being raised. We don't want to document the possible response manually, so **FastAPI Responses** comes in handy.

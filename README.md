@@ -2,17 +2,17 @@
     <strong>FastAPI Responses</strong>
 </h1>
 <p align="center">
-    <a href="https://github.com/Kludex/fastapi-responses" target="_blank">
-        <img src="https://img.shields.io/github/last-commit/Kludex/fastapi-responses" alt="Latest Commit">
+    <a href="https://github.com/v-avdieiev/fastapi-responses" target="_blank">
+        <img src="https://img.shields.io/github/last-commit/v-avdieiev/fastapi-responses" alt="Latest Commit">
     </a>
-        <img src="https://img.shields.io/github/workflow/status/Kludex/fastapi-responses/Test">
-        <img src="https://img.shields.io/codecov/c/github/Kludex/fastapi-responses">
+        <img src="https://img.shields.io/github/workflow/status/v-avdieiev/fastapi-responses/Test">
+        <img src="https://img.shields.io/codecov/c/github/v-avdieiev/fastapi-responses">
     <br />
     <a href="https://pypi.org/project/fastapi-responses" target="_blank">
         <img src="https://img.shields.io/pypi/v/fastapi-responses" alt="Package version">
     </a>
     <img src="https://img.shields.io/pypi/pyversions/fastapi-responses">
-    <img src="https://img.shields.io/github/license/Kludex/fastapi-responses">
+    <img src="https://img.shields.io/github/license/v-avdieiev/fastapi-responses">
 </p>
 
 <p align="center">

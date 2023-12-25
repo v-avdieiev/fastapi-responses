@@ -34,7 +34,7 @@ autoflake = "^1.4"
 isort = "^5.0"
 pytest-cov = "^4.1.0"
 pre-commit = "^3.5.0"
-mypy = "^1.7.1"
+mypy = "^1.8.0"
 requests = "^2.25.0"
 httpx = "^0.25.2"
 

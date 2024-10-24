@@ -2,17 +2,17 @@
     <strong>FastAPI Responses</strong>
 </h1>
 <p align="center">
-    <a href="https://github.com/v-avdieiev/fastapi-responses" target="_blank">
-        <img src="https://img.shields.io/github/last-commit/v-avdieiev/fastapi-responses" alt="Latest Commit">
+    <a href="https://github.com/GeneralFlint/fastapi-responses" target="_blank">
+        <img src="https://img.shields.io/github/last-commit/GeneralFlint/fastapi-responses" alt="Latest Commit">
     </a>
-        <img src="https://img.shields.io/github/workflow/status/v-avdieiev/fastapi-responses/Test">
-        <img src="https://img.shields.io/codecov/c/github/v-avdieiev/fastapi-responses">
+        <img src="https://img.shields.io/github/workflow/status/GeneralFlint/fastapi-responses/Test">
+        <img src="https://img.shields.io/codecov/c/github/GeneralFlint/fastapi-responses">
     <br />
     <a href="https://pypi.org/project/fastapi-responses" target="_blank">
         <img src="https://img.shields.io/pypi/v/fastapi-responses" alt="Package version">
     </a>
     <img src="https://img.shields.io/pypi/pyversions/fastapi-responses">
-    <img src="https://img.shields.io/github/license/v-avdieiev/fastapi-responses">
+    <img src="https://img.shields.io/github/license/GeneralFlint/fastapi-responses">
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@ pip install fastapi-responses
 
 ## Connection with a developer
 
-[![Telegram](https://img.shields.io/badge/Telegram-Group-blue.svg?logo=telegram)](https://telegram.me/developer_support_bot)
+[![Telegram](https://img.shields.io/badge/Telegram-Group-blue.svg?logo=telegram)](https://t.me/PR0DEV)
 
 ## Usage
 
